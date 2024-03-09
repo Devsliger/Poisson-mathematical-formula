@@ -9,7 +9,7 @@ console.log("Enter data for the match");
 rl.question("Home team's average goal rate: ", (lambda_value) => {
   rl.question("Away team's average goal rate: ", (mu_value) => {
 
-    
+
     // Calculate the probability of a goal for each team
     const prob_home = {};
     const prob_away = {};
@@ -21,14 +21,20 @@ rl.question("Home team's average goal rate: ", (lambda_value) => {
     // Display the probability for each possible home team score
     console.log("\nProbabilities for the home team");
     for (let i = 0; i < 10; i++) {
-      console.log(`Score ${i}: ${prob_home[i] * 100}%`);
+      console.log(`Score ${i}: ${(prob_home[i] * 100).toFixed(2)}%`);
     }
+
+    let max1 = Math.max(...Object.values(prob_home))
+    console.log(`max value is: ${(max1 * 100).toFixed(2)}%`)
 
     // Display the probability for each possible away team score
     console.log("\nProbabilities for the away team");
     for (let j = 0; j < 10; j++) {
-      console.log(`Score ${j}: ${prob_away[j] * 100}%`);
+      console.log(`Score ${j}: ${(prob_away[j] * 100).toFixed(2)}%`);
     }
+
+    let max2 = Math.max(...Object.values(prob_away))
+    console.log("max value is: ", (max2 * 100).toFixed(2) + "%") 
 
     // Calculate the probability of each possible result
     const prob_result = {};
@@ -43,7 +49,7 @@ rl.question("Home team's average goal rate: ", (lambda_value) => {
     console.log("\nProbabilities for each possible result");
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
-        console.log(`Result ${i}-${j}: ${prob_result[i][j] * 100}%`);
+        console.log(`Result ${i}-${j}: ${(prob_result[i][j] * 100).toFixed(2)}%`);
       }
     }
 
