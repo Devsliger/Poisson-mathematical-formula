@@ -34,7 +34,7 @@ rl.question("Home team's average goal rate: ", (lambda_value) => {
     }
 
     let max2 = Math.max(...Object.values(prob_away))
-    console.log("max value is: ", (max2 * 100).toFixed(2) + "%") 
+    console.log("max value is: ", (max2 * 100).toFixed(2) + "%")
 
     // Calculate the probability of each possible result
     const prob_result = {};
@@ -52,6 +52,29 @@ rl.question("Home team's average goal rate: ", (lambda_value) => {
         console.log(`Result ${i}-${j}: ${(prob_result[i][j] * 100).toFixed(2)}%`);
       }
     }
+
+
+
+
+    // calculate the closest percentage 
+    let perfin = ((max1 + max2)/9 * 100).toFixed(2)
+
+    const differences = Object.entries(prob_result).map(([key, value]) => ({
+      key,
+      difference : Math.abs(value - perfin)
+    }));
+    
+    differences.sort((a,b) => a.difference - b.difference);
+
+    const closestPercentages = differences.slice(0, 4).map(item => ({
+      [item.key]: prob_result[item.key]
+  }));
+
+  console.log(`Four closest percentages to ${perfin}%:`);
+  closestPercentages.forEach(item => console.log(item));
+
+
+
 
     rl.close();
   });
