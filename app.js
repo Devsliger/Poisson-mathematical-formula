@@ -51,25 +51,7 @@
          }
      }
 
-     // Find the four closest percentages to the average
-     const differences = Object.keys(prob_result).map(key => ({
-         key,
-         difference: Math.abs(prob_result[key] * 100 - perfin)
-     }));
-
-     differences.sort((a, b) => a.difference - b.difference);
-
-     const closestPercentages = differences.slice(0, 4).map(item => ({
-         [item.key]: (prob_result[item.key] * 100).toFixed(2)
-     }));
-
-     let closestPercentagesStr = `<h2>Four closest percentages to ${perfin}%</h2>`;
-     closestPercentages.forEach(item => {
-         closestPercentagesStr += `<p>${Object.keys(item)[0]}: ${Object.values(item)[0]}%</p>`;
-     });
-
-     // Append closest percentages to the result container
-     resultContainer.innerHTML += closestPercentagesStr;
+     
  });
 
  // Function to calculate factorial
